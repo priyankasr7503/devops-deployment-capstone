@@ -1,8 +1,6 @@
 FROM nginx:alpine
 
-WORKDIR /usr/share/nginx/html
-
-COPY devops-build/build/ .
+COPY ./devops-build/build/ /usr/share/nginx/html
 
 EXPOSE 80
 
