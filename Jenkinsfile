@@ -14,11 +14,17 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                bat 'docker build -t %DOCKER_USER%/%IMAGE_NAME%:%BUILD_NUMBER% .'
-            }
-        }
+        stage('Build React App') {
+    steps {
+        bat 'cd devops-build && npm install && npm run build'
+    }
+}
+
+stage('Build Docker Image') {
+    steps {
+        bat 'docker build -t %DOCKER_USER%/%IMAGE_NAME%:%BUILD_NUMBER% .'
+    }
+}
 
         stage('Docker Login') {
             steps {
